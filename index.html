@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmarks</title>
+    <!-- ====== favicon ====== -->
+    <link rel="shortcut icon" sizes="48x48" rel="noopener" target="_blank" href="favicon.png">
+    <!-- ====== Bootstrap css ====== -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- ====== Data Tables css ====== -->
+    <link
+        href="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-2.0.8/b-3.0.2/b-colvis-3.0.2/b-html5-3.0.2/b-print-3.0.2/datatables.min.css"
+        rel="stylesheet">
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&family=Pacifico&family=Righteous&display=swap"
+        rel="stylesheet">
+    <!-- ====== fontawosome css ====== -->
+    <link rel="stylesheet" href="css/font-awsome-all.min.css">
+    <!-- ====== Main css ====== -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body class="position-relative">
+    <!-- <div class="modal fade " id="mode" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Modal 1</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Show a second modal and hide this one with the button below.
+                </div>
+
+            </div>
+        </div>
+    </div> -->
+    <main class="min-vh-100">
+        <div class="container pt-2  d-flex justify-content-center align-items-center flex-column">
+
+
+            <img src="moon.png" onclick="mydark()" id="icon" alt="dark mode icon" class="position-absolute">
+            <!-- <button ><i class="fa-solid fa-moon fa-xl"></i></button> -->
+            <h1 class="m-5 z-1 position-relative">Bookmarker</h1>
+            <div class="border-dotted  w-100 p-4  pt-3 m-3 d-flex justify-content-center align-items-center flex-column">
+                <h2 class="text-center pt-2 my "> <i class="fa-solid fa-bookmark"></i> Bookmark your favorite sites <i
+                        class="fa-solid fa-bookmark"></i></h2>
+
+                <label class="pb-1 pt-4 align-self-start" for="name">
+                    <i class="fa-solid fa-book-bookmark pe-2"></i>
+                    Site Name </label>
+                <input type="text" placeholder="Bookmark Name" class="form-control" id="BookmarkName"
+                    oninput="Validation(this)">
+
+                <label class="pt-4 mt-1 pb-1 align-self-start" for="name">
+                    <i class="fa-solid fa-link pe-2"></i>
+                    Site Name </label>
+                <input type="text" placeholder="Website URL" class="form-control" id="BookmarkUrl"
+                    oninput="Validation(this)">
+                <div class="d-flex justify-content-center align-items-center gap-2">
+                    <!-- <button type="submit" class="btn px-5 mt-4 rounded submit-bottom  " onclick="addUrl()">Submit</button> -->
+                    <button type="submit" class="btn px-5 mt-4 rounded submit-bottom  " onclick="addUrl()"
+                        id="bt-a">Submit</button>
+
+                    <button type="submit" class="btn px-5 mt-4 rounded submit-bottom  " onclick="updatendex()"
+                        id="btn-update">update</button>
+                        <button type="submit" class="btn px-5 mt-4 rounded submit-bottom " onclick="cleaar()">clear</button>
+                        
+                    </div>
+                </div>
+
+
+                
+                
+            <div class="container-fluid">
+                <div class="row text-center">
+                    <div class=" col-12">
+
+                        <table id="example" class="table bg-white table-striped w-100 text-center ">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>Index</th>
+                                    <th>Website Name</th>
+                                    <th>Visit</th>
+                                    <th>Delete&update</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table">
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </main>
+
+    <div
+        class="box-info position-absolute start-0 top-0 w-100 h-100 d-flex justify-content-center align-items-center d-none">
+        <div class="box-conent bg-white p-4 rounded-2 shadow-lg">
+            <header class="box-header w-100 d-flex justify-content-between align-items-center mb-4">
+                <div class="circles d-flex">
+                    <span class="rounded-circle bg-red me-2"></span>
+                    <span class="rounded-circle bg-yellow me-2"></span>
+                    <span class="rounded-circle bg-green me-2"></span>
+                </div>
+                <button class="btn border-0" id="closeBtn">
+                    <i class="fa-solid fa-xmark close fs-3"></i>
+                </button>
+            </header>
+            <p class="m-0 pb-2">
+                Site Name or Url is not valid, Please follow the rules below :
+            </p>
+            <ol class="rules list-unstyled m-0">
+                <li>
+                    <i class="fa-regular fa-circle-right p-2"></i>Site name must
+                    contain at least 3 characters
+                </li>
+                <li>
+                    <i class="fa-regular fa-circle-right p-2"></i>Site URL must be a
+                    valid one
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- <button class="btn btn-primary" >Open first modal</button> -->
+
+    <!-- ====== bootstrap J.s ====== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+    <script src="j.s/bootstrap.min.js"></script>
+    <!-- ====== Data Tables J.s ====== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script
+        src="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-2.0.8/b-3.0.2/b-colvis-3.0.2/b-html5-3.0.2/b-print-3.0.2/datatables.min.js"></script>
+    <!-- ====== Main J.s ====== -->
+
+    <script src="j.s/main.js"></script>
+
+
+</body>
+
+</html>
